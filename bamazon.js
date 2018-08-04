@@ -61,7 +61,6 @@ function cart() {
     }
   ]).then(function(a) {
     console.log('\033[2J');
-    console.log("Your order is being processed. Please wait...\n\n");
     connection.query(
       "SELECT stock_quantity, product_name, price FROM products WHERE ?", {
         id: a.p_id
@@ -107,11 +106,30 @@ function checkout(stock, product, price, quant, id) {
 
           }
         console.log("Your order was succesfully placed.\nAllow 3 to 5 days to receive your items.");
-        connection.end();
+        end();
+      } else {
+        console.log("Order Cancelled.\nHave a nice day.");
+        end();
       }
     });
-
-  } else {
-    console.log("Order Cancelled.\nHave a nice day.");
   }
 };
+
+function end() {
+  console.log('\033[2J');
+  inq.prompt([{
+    name: "ans1",
+    type: "list",
+    message: "Would you like to create another order?",
+    choices: ["Yes", "No"],
+    default: "Yes"
+  }]).then(function(a) {
+    if (a.ans1 === "Yes") {
+      start();
+    } else {
+      console.log('\033[2J');
+      console.log("Thank you for your purchase.\nBAMAZON.COM - The Best Retro CLI Store.");
+      connection.end();
+    }
+  });
+}
