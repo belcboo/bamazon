@@ -128,7 +128,7 @@ function end() {
       start();
     } else {
       console.log('\033[2J');
-      console.log("Thank you for your purchase.\nBAMAZON.COM - The Best Retro CLI Store.");
+      console.log("Thank you for visit us.\nBAMAZON.COM - The Best Retro CLI Store.");
       connection.end();
     }
   });
