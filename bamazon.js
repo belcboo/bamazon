@@ -52,12 +52,24 @@ function cart() {
   inq.prompt([{
       name: "p_id",
       type: "input",
-      message: "Please enter the ID of the produt you would like to acquire: "
+      message: "Please enter the ID of the produt you would like to acquire: ",
+      validate: function(value) {
+        if (isNaN(value) === false) {
+          return true;
+        }
+        return false;
+      }
     },
     {
       name: "quant",
       type: "input",
-      message: "Please enter the quantity of products you would like to acquire: "
+      message: "Please enter the quantity of products you would like to acquire: ",
+      validate: function(value) {
+        if (isNaN(value) === false) {
+          return true;
+        }
+        return false;
+      }
     }
   ]).then(function(a) {
     console.log('\033[2J');
