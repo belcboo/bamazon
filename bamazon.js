@@ -124,6 +124,21 @@ function checkout(stock, product, price, quant, id) {
         end();
       }
     });
+  } else {
+    console.log("We are sorry, our current stock will not allow us to fullfil your order.\nPlease try again with a lower quantity.");
+    inq.prompt([{
+      name: "ans1",
+      type: "list",
+      message: "Would you like to create a new order?",
+      choices: ["Yes", "No"],
+      default: "Yes"
+    }]).then(function(a) {
+      if(a.ans1 === "Yes"){
+        start();
+      }else{
+        console.log("Thank you for visiting us. Hope to see you soon!\nBAMAZON.COM - The Best Retro CLI Store.");
+      }
+    });
   }
 };
 
